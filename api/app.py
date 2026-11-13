@@ -105,6 +105,10 @@ def get_reading( mac: str | None = None,  since: str | None = None):
 
 @app.put("/alarm/{mac}")
 def put_alarm(mac: str, alarm: Alarm, response: Response):
+    device = devices.find_one({"mac": mac})
+    if device is None:
+        raise HTTPException(status_code=404, detail=f"Device with MAC {mac} does not exist big bro.")
+    
     new_alarm =  alarm.model_dump()
     new_alarm["mac"] = mac
 
