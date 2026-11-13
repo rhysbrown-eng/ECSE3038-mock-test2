@@ -71,7 +71,7 @@ def create_reading(reading: Reading, x_api_key: str | None = Header(default=None
     device = devices.find_one({"mac": reading.mac}) 
 
     if(device is None):
-        raise HTTPException(status_code=404, detail=f"Device with MAC {device.mac} does not exist big bro.")
+        raise HTTPException(status_code=404, detail=f"Device with MAC {reading.mac} does not exist big bro.")
 
     if(device["X-API-Key"] != x_api_key):
         raise HTTPException(status_code=403, detail=f"That's not your credentials big bro.")
