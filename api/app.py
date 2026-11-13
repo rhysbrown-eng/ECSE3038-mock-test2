@@ -103,7 +103,7 @@ def get_reading( mac: str | None = None,  since: str | None = None):
         
     return results
 
-app.put("/alarm/{mac}")
+@app.put("/alarm/{mac}")
 def put_alarm(mac: str, alarm: Alarm, response: Response):
     new_alarm =  alarm.model_dump()
     new_alarm["mac"] = mac
@@ -121,7 +121,7 @@ def put_alarm(mac: str, alarm: Alarm, response: Response):
 
     return new_alarm
 
-app.get("/devices")
+@app.get("/devices")
 def get_devices():
     cursor = devices.find({}, {"_id": 0, "X-API-Key": 0})
     return list(cursor)

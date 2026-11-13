@@ -33,6 +33,8 @@ float tempLimit = NAN;                        // no limit until the broker gives
 float lastTemp = NAN;                         // no reading yet
 String reportedLed = "";                      // what we last told the broker: "on", "off" or nothing yet
 
+int update_led();
+
 bool connect_wifi() {
   Serial.print("Connecting to ");
   Serial.print(WIFI_SSID);
