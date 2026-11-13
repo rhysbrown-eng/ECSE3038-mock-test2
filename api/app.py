@@ -95,7 +95,7 @@ def get_reading( mac: str | None = None,  since: str | None = None):
         except ValueError:
             raise HTTPException(status_code = 400, detail="Invalid format for time used big bro. Please use ISO format.")
 
-    found_readings = readings.find(query)
+    found_readings = readings.find(query).sort("time", -1)
     results = []
     for reading in found_readings:
         reading.pop("_id", None)
